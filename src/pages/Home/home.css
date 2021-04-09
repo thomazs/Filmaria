@@ -39,7 +39,7 @@
     /* max-height: 350px; */
 }
 
-.lista-filmes article a{
+.lista-filmes article a, .lista-filmes article button{
     text-decoration: none;
     background: crimson;
     padding-top: 10px;
@@ -52,7 +52,7 @@
     text-align: center;
 }
 
-.lista-filmes article a:hover{
+.lista-filmes article a:hover, .lista-filmes article button{
     background: rgb(196, 92, 112);
     transition: all 0.5s;
 }

@@ -1,0 +1,47 @@
+.meus-filmes{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.meus-filmes ul{width: 100%}
+
+li .titulo{
+    width: 90%;
+    margin-top: 30px;
+    padding-top: 17px;
+    padding-bottom: 3px;
+    background: rgb(211, 211, 211);
+    font-size: 24px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-left: 15px;
+}
+
+.comandos-filmes{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-around;    
+    margin-left: 15px;
+}
+
+.comandos-filmes a{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-decoration: none;
+    background: crimson;
+    color: #fff;
+    font-size: 16x;
+    text-align: center;   
+    width: 100%; 
+}
+
+.comandos-filmes a:hover{
+    background: rgb(196, 92, 112);
+    transition: all 0.5s;
+}

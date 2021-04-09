@@ -1,22 +1,23 @@
-import { useEffect, useState} from 'react'
+import './filme.css'
+import { useEffect, useState, useCallback } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import api from '../../services/api'
-import './filme.css'
 
-function Filme() {
+function Filme(props) {
     const { id } = useParams()
     const [filme, setFilme] = useState({})    
     const [loading, setLoading] = useState(true)
-    const [salvo, setSalvo] = useState(false)
+    const [backUrl, setBackUrl] = useState("/")
     const history = useHistory()
     const MINHALISTA = 'filmes'
+    const QUERY_STRING = props.location.search.substring(1)
 
-    function filmeJaSalvo(){
+    const filmeJaSalvo=useCallback(() => {
         const minhaLista = localStorage.getItem(MINHALISTA)
         let filmesSalvos = JSON.parse(minhaLista) || []
         let estavaSalvo = filmesSalvos.some((filmeSalvo) => {return filmeSalvo.id === filme.id})
         return estavaSalvo === true
-    }
+    }, [filme])
 
     function salvarFilme(e){
         const minhaLista = localStorage.getItem(MINHALISTA)
@@ -27,7 +28,6 @@ function Filme() {
         }else{
             filmesSalvos.push(filme)
             localStorage.setItem(MINHALISTA, JSON.stringify(filmesSalvos))
-            setSalvo(true)
             alert('Filme salvo com sucesso')
         }
         e.preventDefault()
@@ -43,7 +43,6 @@ function Filme() {
         }
         filmesSalvos = filmesSalvos.filter((filmeSalvo) => filmeSalvo.id!==filme.id)
         localStorage.setItem(MINHALISTA, JSON.stringify(filmesSalvos))
-        setSalvo(false)
         alert('Filme removido da lista de favoritos')
         e.preventDefault()
     }
@@ -51,12 +50,21 @@ function Filme() {
     useEffect(() => {
       async function loadFilme(){
           const response = await api.get(`/r-api/?api=filmes/${id}`)
-  
+          let var_qs = QUERY_STRING
+          var_qs = var_qs.split("&")
+          var_qs.map((item)=>{
+              let item2 = item.split("=")
+              if (item2[0] === "back")
+                setBackUrl(item2[1])
+              return item2[1]
+          })
+
           setLoading(false)
+
           if (response.status === 200){
               if (response.data.length === 0){
                 alert('Filme não existe')
-                history.push('/')
+                history.push(backUrl)
               }else{
                 setFilme(response.data)                
               }
@@ -69,7 +77,7 @@ function Filme() {
   
       loadFilme()
   
-    }, [history, id, filmeJaSalvo])
+    }, [history, id, filmeJaSalvo, backUrl, setBackUrl, QUERY_STRING])
 
     return (
       <div className="container">
@@ -85,9 +93,9 @@ function Filme() {
                 <img src={filme.foto} alt="" />
                 <div className="sinopse">{filme.sinopse}</div>
                 <div className="comandos">
-                    {filmeJaSalvo() === true ? <a href="#" onClick={removerFilme}>Remover</a> : <a href="#" onClick={salvarFilme}>Salvar</a>}
-                    <a href={`http://youtube.com/results?search_query=${filme.nome} trailer`} target="_blank">Trailler</a>
-                    <Link to="/">Voltar</Link>                    
+                    {filmeJaSalvo() === true ? <a onClick={removerFilme}>Remover</a> : <a onClick={salvarFilme}>Salvar</a>}
+                    <a href={`http://youtube.com/results?search_query=${filme.nome} trailer`} target="_blank" rel="noreferrer">Trailler</a>
+                    <Link to={backUrl}>Voltar</Link>                    
                 </div>
             </article>
           }
