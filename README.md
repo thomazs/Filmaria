@@ -1,75 +1,30 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
 # Filmaria
-Projeto de estudos, criado usando ReactJS
->>>>>>> 9312a7c2a78da48e2e84fae836077b7323066ceb
+Projeto de estudos, criado usando ReactJS, com a finalidade de aprender e treinar conhecimentos de ReactJS adquiridos
+
+## Roteiro
+
+Possui as páginas de:
+- Home (página Principal com a lista de filmes obtidos a partir de uma API)
+- Detalhes do Filme (mostrando maiores informações de um filme selecionado)
+- Favoritos (Página com a lista de filmes favoritos)
+
+## Recursos Adicionados
+
+Recursos adicionados dentro das páginas
+
+### Detalhes do Filme
+
+Busca e mostra maiores detalhes sobre o filme, tais como sinopse, capa, nome e opções de abrir o youtube com a busca por Trailler
+
+### Salvar Favorito
+
+Na página de detalhes do filme é possível marcar um filme como favorito. Se este filme já tiver sido adicionado, aparece a opção de remover o filme da lista de favoritos.
+
+### Listar Favoritos
+
+Opção que lista os filmes marcados como Favoritos, dando opção de remover o filme marcado como favorito, e também a opção de ver mais detalhes do filme.
+
+### Outros recursos
+
+A tela que mostra mais detalhes do filme tem um botão "Voltar" que retorna para a tela anterior. Se tiver vindo da Home, ele volta para a Home, se tiver vindo da página de Favoritos, volta para a página de favoritos. 
+Para isso, é avaliada a queryString, ou seja, opções vindas pela URL (depois do path). 

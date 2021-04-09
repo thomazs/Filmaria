@@ -29,6 +29,14 @@ export default function Favoritos(){
     return (
         <div className="meus-filmes">
             <h1>Meus Filmes</h1>
+            {
+            filmes.length === 0
+            ? 
+            <div className="mensagem">
+                Você não possui nenhum filme salvo :(<br />
+                <Link to="/">Voltar a página principal</Link>
+            </div>
+            :            
             <ul>
                 {filmes.map((filme)=>{
                     return (
@@ -42,6 +50,7 @@ export default function Favoritos(){
                     )
                 })}
             </ul>
+            }
         </div>
     )
 }
