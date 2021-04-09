@@ -1,0 +1,18 @@
+.lista-filmes article .sinopse{
+    background: #ccc;
+    max-height: 200px;
+    overflow: auto;
+    padding: 20px;
+}
+
+.lista-filmes img{
+    width: 100%
+    /* max-height: 350px; */
+}
+
+.comandos{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
