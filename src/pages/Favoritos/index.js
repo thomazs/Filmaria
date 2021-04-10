@@ -1,6 +1,7 @@
 import './favoritos.css'
 import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 export default function Favoritos(){
     const [filmes, setFilmes] = useState([])
@@ -16,13 +17,13 @@ export default function Favoritos(){
         let filmesSalvos = JSON.parse(minhaLista) || []
         let estavaSalvo = filmesSalvos.some((filmeSalvo) => {return filmeSalvo.id === filme_id})
         if (estavaSalvo === false){
-            alert('Filme não estava salvo em sua lista')
+            toast.error('Filme não estava salvo em sua lista')
             return
         }
         filmesSalvos = filmesSalvos.filter((filmeSalvo) => filmeSalvo.id!==filme_id)
         localStorage.setItem(MINHA_LISTA, JSON.stringify(filmesSalvos))
         setFilmes(filmesSalvos || [])
-        alert('Filme removido da lista de favoritos')
+        toast.success('Filme removido da lista de favoritos')
     }
       
 
@@ -43,7 +44,7 @@ export default function Favoritos(){
                         <li key={filme.id}>
                             <div className="titulo">{filme.nome}</div>
                             <div className="comandos-filmes">
-                                <Link to={`/${filme.id}?back=/favoritos`}>Ver Detalhes</Link>
+                                <Link to={`/filme/${filme.id}?back=/favoritos`}>Ver Detalhes</Link>
                                 <a href="#" onClick={()=>removerFilme(filme.id)}>Excluir</a>
                             </div>
                         </li>

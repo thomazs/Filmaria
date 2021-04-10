@@ -2,6 +2,7 @@ import './filme.css'
 import { useEffect, useState, useCallback } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import api from '../../services/api'
+import {toast} from 'react-toastify'
 
 function Filme(props) {
     const { id } = useParams()
@@ -24,11 +25,11 @@ function Filme(props) {
         let filmesSalvos = JSON.parse(minhaLista) || []
         let estavaSalvo = filmesSalvos.some((filmeSalvo) => {return filmeSalvo.id === filme.id})
         if (estavaSalvo === true){
-            alert('Filme já estava salvo em sua lista')
+            toast.info('Filme já estava salvo em sua lista')
         }else{
             filmesSalvos.push(filme)
             localStorage.setItem(MINHALISTA, JSON.stringify(filmesSalvos))
-            alert('Filme salvo com sucesso')
+            toast.success('Filme salvo com sucesso')
         }
         e.preventDefault()
     }
@@ -38,12 +39,12 @@ function Filme(props) {
         let filmesSalvos = JSON.parse(minhaLista) || []
         let estavaSalvo = filmesSalvos.some((filmeSalvo) => {return filmeSalvo.id === filme.id})
         if (estavaSalvo === false){
-            alert('Filme não estava salvo em sua lista')
+            toast.warn('Filme não estava salvo em sua lista')
             return
         }
         filmesSalvos = filmesSalvos.filter((filmeSalvo) => filmeSalvo.id!==filme.id)
         localStorage.setItem(MINHALISTA, JSON.stringify(filmesSalvos))
-        alert('Filme removido da lista de favoritos')
+        toast.success('Filme removido da lista de favoritos')
         e.preventDefault()
     }
   
@@ -63,14 +64,14 @@ function Filme(props) {
 
           if (response.status === 200){
               if (response.data.length === 0){
-                alert('Filme não existe')
+                toast.error('Filme não existe')
                 history.push(backUrl)
               }else{
                 setFilme(response.data)                
               }
               
           }else{
-              alert('Falha na requisição')
+              toast.error('Falha na requisição')
           }
   
       }
